@@ -1,14 +1,13 @@
 package models;
 
 import interfaces.IContas;
-import java.util.Scanner;
 
-public class Media implements IContas {
-    Scanner meuLeitor = new Scanner(System.in);
+
+public class Media extends BasicoContas implements IContas {
+
 
     private double quantidade;
     private double valorTotal;
-    private double valorFinal;
 
     public double getQuantidade() {
         return quantidade;
@@ -24,12 +23,7 @@ public class Media implements IContas {
         this.valorTotal = valorTotal;
     }
 
-    public double getValorFinal() {
-        return valorFinal;
-    }
-    public void setValorFinal(double valorFinal) {
-        this.valorFinal = valorFinal;
-    }
+
 
     @Override
     public void pegarValores() {
@@ -48,8 +42,12 @@ public class Media implements IContas {
     }
 
     @Override
+    public void calcular() {
+        super.setValorFinal(getValorTotal() / getQuantidade());
+    }
+
+    @Override
     public String retornarResultado() {
-        setValorFinal(getValorTotal() / getQuantidade());
-        return "O Valor da média destes números é igual a " + getValorFinal();
+        return "O Valor da média destes números é igual a " + super.getValorFinal();
     }
 }
